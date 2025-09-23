@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestione Prodotti - SIWZone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="/css/headerFooter.css" rel="stylesheet" type="text/css">
+    <link href="/css/stileIndex.css" rel="stylesheet" type="text/css">
+    <link href="/css/stileInserimento.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar" id="navbar">
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/showAllProdotti">Prodotti</a>
+            <a href="/admin/success">Area Riservata</a>
+        </div>
+
+        <div class="search-bar">
+            <form th:action="@{/ricercaHome}" method="POST">
+                <input type="text" name="keyword" th:value="${keyword}" placeholder="Cerca...">
+                <button type="submit">Cerca</button>
+            </form>
+        </div>
+
+        <div th:if="${userDetails}" class="auth-links">
+            <span th:text="${userDetails.username}"></span>
+            <a href="/logout">Logout</a>
+        </div>
+        <div th:unless="${userDetails}" class="auth-links">
+            <a href="/login">Login</a>
+            <a href="/register">Registrazione</a>
+        </div>
+        <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
+    </div>
+
+    <div class="container">
+        <h1><i class="fas fa-box"></i> Gestione Prodotti</h1>
+        
+        <div style="display: flex; justify-content: space-between; margin-bottom: 20px; align-items: center;">
+            <a href="/admin/success" style="background-color: #6c757d; color: white; padding: 10px 15px; text-decoration: none; border-radius: 4px;">
+                <i class="fas fa-arrow-left"></i> Torna al Pannello Admin
+            </a>
+            <a href="/admin/newProdotto" style="background-color: #28a745; color: white; padding: 10px 15px; text-decoration: none; border-radius: 4px;">
+                <i class="fas fa-plus"></i> Aggiungi Prodotto
+            </a>
+        </div>
+        
+        <div style="overflow-x: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+            <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                <thead>
+                    <tr style="background-color: #343a40; color: white;">
+                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">ID</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Nome</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Prezzo</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Tipologia</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Immagini</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Azioni</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="prodotto : ${prodotti}" style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 12px; border: 1px solid #ddd;" th:text="${prodotto.id}"></td>
+                        <td style="padding: 12px; border: 1px solid #ddd;" th:text="${prodotto.nome}"></td>
+                        <td style="padding: 12px; border: 1px solid #ddd; color: #e74c3c; font-weight: bold;">
+                            EUR <span th:text="${#numbers.formatDecimal(prodotto.prezzo, 1, 2)}"></span>
+                        </td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">
+                            <span style="background: #3498db; color: white; padding: 4px 8px; border-radius: 15px; font-size: 12px;" th:text="${prodotto.tipologia}"></span>
+                        </td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">
+                            <div th:if="${prodotto.immagini != null and !prodotto.immagini.isEmpty()}" style="display: flex; gap: 5px; flex-wrap: wrap;">
+                                <img th:each="img, iterStat : ${prodotto.immagini}" th:if="${iterStat.index < 3}"
+                                     th:src="@{/admin/prodotto/{lid}/immagine/{iid}(lid=${prodotto.id}, iid=${img.id})}" 
+                                     alt="Immagine prodotto" 
+                                     style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;" />
+                                <span th:if="${prodotto.immagini.size() > 3}" style="background: #6c757d; color: white; padding: 8px; border-radius: 4px; font-size: 10px;">
+                                    +<span th:text="${prodotto.immagini.size() - 3}"></span>
+                                </span>
+                            </div>
+                            <span th:if="${prodotto.immagini == null or prodotto.immagini.isEmpty()}" style="color: #999; font-style: italic;">
+                                Nessuna immagine
+                            </span>
+                        </td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">
+                            <div style="display: flex; gap: 5px; flex-wrap: wrap;">
+                                <a th:href="@{/admin/editProdotto(id=${prodotto.id})}" 
+                                   style="background-color: #ffc107; color: white; padding: 6px 10px; text-decoration: none; border-radius: 4px; font-size: 12px;">
+                                    <i class="fas fa-edit"></i> Modifica
+                                </a>
+                                <a th:href="@{/admin/prodotto/{id}/prodottiSimili(id=${prodotto.id})}" 
+                                   style="background-color: #17a2b8; color: white; padding: 6px 10px; text-decoration: none; border-radius: 4px; font-size: 12px;">
+                                    <i class="fas fa-link"></i> Simili
+                                </a>
+                                <a th:href="@{/admin/deleteProdotto(id=${prodotto.id})}" 
+                                   style="background-color: #dc3545; color: white; padding: 6px 10px; text-decoration: none; border-radius: 4px; font-size: 12px;"
+                                   onclick="return confirm('Sei sicuro di voler eliminare questo prodotto?')">
+                                    <i class="fas fa-trash"></i> Elimina
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr th:if="${prodotti == null or prodotti.isEmpty()}">
+                        <td colspan="6" style="padding: 40px; text-align: center; color: #999;">
+                            <i class="fas fa-box-open" style="font-size: 3rem; margin-bottom: 15px; display: block;"></i>
+                            <strong>Nessun prodotto trovato</strong>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        function toggleMenu() {
+            var navbar = document.getElementById('navbar');
+            navbar.classList.toggle('responsive');
+        }
+    </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>SIWZone</h3>
+                <p>Mostra prodotti aggiunti - Area Amministratori.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Link Utili</h3>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/admin/prodotti">Gestisci Prodotti</a></li>
+                    <li><a href="/admin/success">Area Riservata</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 SIWZone. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+</body>
+</html>

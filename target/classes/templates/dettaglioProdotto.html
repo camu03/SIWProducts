@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${prodotto.nome} + ' - SIWZone'">Prodotto - SIWZone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/headerFooter.css" rel="stylesheet" type="text/css">
+    <link href="/css/stileIndex.css" rel="stylesheet" type="text/css">
+    <link href="/css/dettaglioProdotto.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar" id="navbar">
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/showAllProdotti">Prodotti</a>
+            <a th:if="${userDetails != null and userDetails.authorities.?[authority == 'ADMIN'].size() > 0}" href="/admin/success">Area Riservata</a>
+        </div>
+
+        <div class="search-bar">
+            <form th:action="@{/ricercaHome}" method="POST">
+                <input type="text" name="keyword" th:value="${keyword}" placeholder="Cerca...">
+                <button type="submit">Cerca</button>
+            </form>
+        </div>
+
+        <div th:if="${userDetails}" class="auth-links">
+            <span th:text="${userDetails.username}"></span>
+            <a href="/logout">Logout</a>
+        </div>
+        <div th:unless="${userDetails}" class="auth-links">
+            <a href="/login">Login</a>
+            <a href="/register">Registrazione</a>
+        </div>
+        <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
+    </div>
+
+    <!-- Dettaglio Prodotto -->
+    <div class="product-detail">
+        <a href="/showAllProdotti" class="back-button">
+            <i class="fas fa-arrow-left"></i> Torna ai Prodotti
+        </a>
+        
+        <div class="product-gallery">
+            <div class="main-image">
+                <img th:if="${#lists.isEmpty(prodotto.immagini)}" 
+                     src="/images/placeholder.png" 
+                     alt="Nessuna immagine disponibile" 
+                     id="mainImage" />
+                
+                <img th:if="${!#lists.isEmpty(prodotto.immagini)}" 
+                     th:src="@{/prodotto/immagine/{iid}(iid=${prodotto.immagini[0].id})}" 
+                     th:alt="'Immagine di ' + ${prodotto.nome}" 
+                     id="mainImage" />
+                
+                <!-- Thumbnail Gallery -->
+                <div class="thumbnail-gallery" th:if="${!#lists.isEmpty(prodotto.immagini) and prodotto.immagini.size() > 1}">
+                    <img th:each="img : ${prodotto.immagini}" 
+                         th:src="@{/prodotto/immagine/{iid}(iid=${img.id})}" 
+                         th:alt="'Thumbnail ' + ${img.id}" 
+                         class="thumbnail"
+                         th:onclick="'changeMainImage(this.src)'" />
+                </div>
+            </div>
+            
+            <div class="product-info">
+                <h1 class="product-title" th:text="${prodotto.nome}">Nome Prodotto</h1>
+                
+                <div class="product-price">
+                    &euro;<span th:text="${prodotto.prezzo}">0.00</span>
+                </div>
+                
+                <div class="product-category" th:if="${prodotto.tipologia != null and !#strings.isEmpty(prodotto.tipologia)}">
+                    <i class="fas fa-tag"></i> 
+                    <span th:text="${prodotto.tipologia}">Categoria</span>
+                </div>
+                
+                <div class="product-description" th:if="${prodotto.descrizione != null and !#strings.isEmpty(prodotto.descrizione)}">
+                    <h3>Descrizione</h3>
+                    <p th:text="${prodotto.descrizione}">Descrizione del prodotto</p>
+            
+            <!-- Pulsante Prodotti Simili -->
+            <div style="margin-top: 20px;">
+                <a th:href="@{/prodotto/{id}/simili(id=${prodotto.id})}" 
+                   style="background: #17a2b8; color: white; padding: 12px 20px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold;">
+                    <i class="fas fa-link"></i> Vedi Prodotti Simili
+                </a>
+            </div>
+                </div>
+                
+                <div th:if="${prodotto.descrizione == null or #strings.isEmpty(prodotto.descrizione)}">
+                    <p class="product-description">Nessuna descrizione disponibile per questo prodotto.</p>
+                </div>
+                
+                <!-- Informazioni aggiuntive -->
+                <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 5px;">
+                    <h4>Informazioni Prodotto</h4>
+                    <p><strong>ID Prodotto:</strong> <span th:text="${prodotto.id}">ID</span></p>
+                    <p><strong>Categoria:</strong> <span th:text="${prodotto.tipologia}">Categoria</span></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sezione Commenti -->
+        <div class="comments-section" style="margin-top: 50px;">
+            <h3><i class="fas fa-comments"></i> Commenti</h3>
+            
+            <!-- Form per aggiungere commento (solo se loggato) -->
+            <div th:if="${userDetails}" class="add-comment-form" style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 30px;">
+                <h5>Aggiungi un commento</h5>
+                <form th:action="@{/prodotto/{id}/commento(id=${prodotto.id})}" method="post" th:object="${nuovoCommento}">
+                    <div class="mb-3">
+                        <textarea class="form-control" th:field="*{testo}" rows="4" 
+                                 placeholder="Scrivi il tuo commento..." maxlength="500" required
+                                 style="border: 1px solid #ddd; border-radius: 5px; padding: 10px;"></textarea>
+                        <div th:if="${#fields.hasErrors('testo')}" th:errors="*{testo}" class="text-danger small mt-1"></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Pubblica Commento
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Messaggio per utenti non loggati -->
+            <div th:unless="${userDetails}" class="login-prompt" style="background: #e9ecef; padding: 20px; border-radius: 10px; margin-bottom: 30px; text-align: center;">
+                <p><i class="fas fa-sign-in-alt"></i> <a href="/login">Accedi</a> per lasciare un commento</p>
+            </div>
+            
+            <!-- Lista commenti esistenti -->
+            <div class="comments-list">
+                <div th:if="${prodotto.commenti != null and !prodotto.commenti.isEmpty()}">
+                    <div th:each="commento : ${prodotto.commenti}" class="comment-item" 
+                         style="background: white; padding: 20px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #3498db; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        
+                        <div class="comment-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <div>
+                                <strong style="color: #2c3e50;">
+                                    <i class="fas fa-user"></i> 
+                                    <span th:if="${commento.user != null}" th:text="${commento.user.name + ' ' + commento.user.surname}">Nome Utente</span>
+                                    <span th:if="${commento.user == null}">Utente Anonimo</span>
+                                </strong>
+                                <small class="text-muted ms-3" th:if="${commento.dataCreazione}" 
+                                       th:text="${#temporals.format(commento.dataCreazione, 'dd/MM/yyyy HH:mm')}">Data</small>
+                            </div>
+                            
+                            <!-- Pulsanti per l'autore del commento -->
+                            <div th:if="${userDetails != null and commento.user != null and userDetails.username == commento.user.credentials.username}">
+                                <a th:href="@{/prodotto/{pid}/commento/{cid}/modifica(pid=${prodotto.id}, cid=${commento.id})}" 
+                                   class="btn btn-sm btn-outline-primary me-2">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a th:href="@{/prodotto/{pid}/commento/{cid}/elimina(pid=${prodotto.id}, cid=${commento.id})}" 
+                                   class="btn btn-sm btn-outline-danger"
+                                   onclick="return confirm('Sei sicuro di voler eliminare questo commento?')">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="comment-text" style="line-height: 1.6; color: #555;">
+                            <p th:text="${commento.testo}">Testo del commento</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Messaggio se non ci sono commenti -->
+                <div th:if="${prodotto.commenti == null or prodotto.commenti.isEmpty()}" 
+                     class="no-comments" style="text-align: center; padding: 40px; color: #7f8c8d;">
+                    <i class="fas fa-comment-slash fa-3x mb-3"></i>
+                    <p>Nessun commento ancora. Sii il primo a commentare!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            var navbar = document.getElementById('navbar');
+            navbar.classList.toggle('responsive');
+        }
+        
+        function changeMainImage(src) {
+            document.getElementById('mainImage').src = src;
+        }
+    </script>
+
+    <!-- Footer -->
+	<footer class="footer">
+		<div class="footer-content">
+			<div class="footer-section">
+				<h3>SIWZone</h3>
+				<p>Scopri i nostri prodotti esclusivi e trova quello che stai cercando.</p>
+			</div>
+			<div class="footer-section">
+				<h3>Link Utili</h3>
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="/showAllProdotti">Prodotti</a></li>
+					<li><a href="/login">Login</a></li>
+					<li><a href="/register">Registrazione</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<p>&copy; 2025 SIWZone. Tutti i diritti riservati.</p>
+		</div>
+	</footer>
+</body>
+</html>

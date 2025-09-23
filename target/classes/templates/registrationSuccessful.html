@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>FiloClick - Registrazione conclusa</title>
+	<link href="/css/stileRegistrazioneSuccesso.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+	<!-- VEDERE SE LASCIARE QUESTA ROBA-->
+	<header>
+		<div th:if="${userDetails}">
+			<span th:text="${userDetails.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${user}">
+			<a href="/login">Login</a>
+		</div>
+	</header>
+	<!--_______________________________________________________-->
+
+	<div class="container">
+		<h1>Registrazione Avvenuta con Successo!</h1>
+		<span th:text="${user.name}"> </span>
+		<p>Grazie per esserti registrato. La tua registrazione &egrave; stata completata
+			con successo</p>
+
+		<a href="/homepage" class="button">Torna al login</a>
+
+		<!-- qui si può continuare mettendo altre informazioni dell'utente -->
+	</div>
+
+
+</body>
+
+</html>

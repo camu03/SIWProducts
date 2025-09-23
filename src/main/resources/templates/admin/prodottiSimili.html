@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestisci Prodotti Simili - SIWZone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="/css/headerFooter.css" rel="stylesheet" type="text/css">
+    <link href="/css/stileIndex.css" rel="stylesheet" type="text/css">
+    <link href="/css/stileInserimento.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar" id="navbar">
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/showAllProdotti">Prodotti</a>
+            <a href="/admin/success">Area Riservata</a>
+        </div>
+
+        <div class="search-bar">
+            <form th:action="@{/ricercaHome}" method="POST">
+                <input type="text" name="keyword" th:value="${keyword}" placeholder="Cerca...">
+                <button type="submit">Cerca</button>
+            </form>
+        </div>
+
+        <div th:if="${userDetails}" class="auth-links">
+            <span th:text="${userDetails.username}"></span>
+            <a href="/logout">Logout</a>
+        </div>
+        <div th:unless="${userDetails}" class="auth-links">
+            <a href="/login">Login</a>
+            <a href="/register">Registrazione</a>
+        </div>
+        <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
+    </div>
+
+    <div class="container">
+        <h1><i class="fas fa-link"></i> Gestisci Prodotti Simili</h1>
+        
+        <!-- Info prodotto principale -->
+        <div style="background: #f0f8ff; padding: 20px; border-radius: 8px; margin-bottom: 30px; border-left: 4px solid #007bff;">
+            <h3 style="margin: 0; color: #333;">
+                <i class="fas fa-box"></i> <span th:text="${prodotto.nome}">Nome Prodotto</span>
+            </h3>
+            <p style="margin: 5px 0 0 0; color: #666;">
+                <strong>Prezzo:</strong> EUR <span th:text="${prodotto.prezzo}">0.00</span> | 
+                <strong>Tipologia:</strong> <span th:text="${prodotto.tipologia}">Categoria</span>
+            </p>
+        </div>
+
+        <!-- Pulsanti navigazione -->
+        <div style="display: flex; justify-content: space-between; margin-bottom: 20px; align-items: center;">
+            <a href="/admin/prodotti" style="background-color: #6c757d; color: white; padding: 10px 15px; text-decoration: none; border-radius: 4px;">
+                <i class="fas fa-arrow-left"></i> Torna ai Prodotti
+            </a>
+        </div>
+
+        <!-- Prodotti simili attuali -->
+        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); margin-bottom: 30px;">
+            <h3><i class="fas fa-list"></i> Prodotti Simili Associati</h3>
+            
+            <div th:if="${prodotto.prodottiSimili != null and !prodotto.prodottiSimili.isEmpty()}">
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px;">
+                    <div th:each="simile : ${prodotto.prodottiSimili}" 
+                         style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; background: #fafafa;">
+                        <h4 style="margin: 0 0 10px 0; color: #333;" th:text="${simile.nome}">Nome</h4>
+                        <p style="margin: 5px 0; color: #666;">EUR <span th:text="${simile.prezzo}">0.00</span></p>
+                        <p style="margin: 5px 0; font-size: 12px;">
+                            <span style="background: #3498db; color: white; padding: 2px 6px; border-radius: 10px;" 
+                                  th:text="${simile.tipologia}">Categoria</span>
+                        </p>
+                        <a th:href="@{/admin/prodotto/{id}/removeProdottoSimile/{simileId}(id=${prodotto.id}, simileId=${simile.id})}" 
+                           style="background-color: #dc3545; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px; font-size: 12px;"
+                           onclick="return confirm('Rimuovi questo prodotto simile?')">
+                            <i class="fas fa-unlink"></i> Rimuovi
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div th:if="${prodotto.prodottiSimili == null or prodotto.prodottiSimili.isEmpty()}" 
+                 style="text-align: center; padding: 40px; color: #999;">
+                <i class="fas fa-box-open" style="font-size: 3rem; margin-bottom: 15px; display: block;"></i>
+                <strong>Nessun prodotto simile associato</strong>
+            </div>
+        </div>
+
+        <!-- Aggiungi nuovo prodotto simile -->
+        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+            <h3><i class="fas fa-plus"></i> Aggiungi Prodotto Simile</h3>
+            
+            <form th:action="@{/admin/prodotto/{id}/addProdottoSimile(id=${prodotto.id})}" method="post">
+                <div>
+                    <label for="prodottoSimileId">Seleziona Prodotto:</label>
+                    <select id="prodottoSimileId" name="prodottoSimileId" required 
+                            style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                        <option value="">-- Seleziona un prodotto --</option>
+                        <option th:each="p : ${tuttiProdotti}" 
+                                th:value="${p.id}" 
+                                th:text="${p.nome + ' (EUR ' + p.prezzo + ' - ' + p.tipologia + ')'}"
+                                th:if="${!prodotto.prodottiSimili.contains(p)}">
+                            Prodotto
+                        </option>
+                    </select>
+                </div>
+                
+                <div style="margin-top: 15px;">
+                    <button type="submit" style="background-color: #28a745;">
+                        <i class="fas fa-link"></i> Aggiungi Prodotto Simile
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        function toggleMenu() {
+            var navbar = document.getElementById('navbar');
+            navbar.classList.toggle('responsive');
+        }
+    </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>SIWZone</h3>
+                <p>Aggiungi Prodotti simili - Area Amministratori.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Link Utili</h3>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/admin/prodotti">Gestisci Prodotti</a></li>
+                    <li><a href="/admin/success">Area Riservata</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 SIWZone. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+</body>
+</html>

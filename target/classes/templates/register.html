@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title> Registrazione </title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+		integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+		<link href="/css/headerFooter.css" rel="stylesheet" type="text/css">
+	<link href="/css/authStyles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<!-- Navbar -->
+	<div class="navbar" id="navbar">
+		<div class="nav-links">
+			<a href="/">Home</a>
+			<a href="/showAllProdotti">Prodotti</a>
+		</div>
+
+		<div class="search-bar">
+			<form th:action="@{/ricercaHome}" method="POST">
+				<input type="text" name="keyword" placeholder="Cerca...">
+				<button type="submit">Cerca</button>
+			</form>
+		</div>
+
+		<div class="auth-links">
+			<a href="/login">Login</a>
+		</div>
+		<span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
+	</div>
+
+	<!--blocco principale-->
+	<div class="main-content">
+		<div class="main-block">
+			<h1><i class="fas fa-user-plus"></i> Creazione Account</h1>
+
+			<form th:action="@{/register}" th:object="${credentials}" method="POST">
+
+				<!-- Scegli il ruolo -->
+				<div class="account-type">
+					<input type="radio" th:field="*{role}" value="DEFAULT" id="radioOne" />
+					<label for="radioOne" class="radio">Utente</label>
+					<input type="radio" th:field="*{role}" value="ADMIN" id="radioTwo" />
+					<label for="radioTwo" class="radio">Admin</label>
+				</div>
+
+				<hr />
+
+				<!-- Dati personali (nested in Credentials.user) -->
+				<div class="input-container">
+					<label class="icon" for="name"><i class="fas fa-user"></i></label>
+					<input type="text" id="name" placeholder="Nome" th:field="*{user.name}" required />
+				</div>
+
+				<div class="input-container">
+					<label class="icon" for="surname"><i class="fas fa-user"></i></label>
+					<input type="text" id="surname" placeholder="Cognome" th:field="*{user.surname}" required />
+				</div>
+
+				<div class="input-container">
+					<label class="icon" for="email"><i class="fas fa-envelope"></i></label>
+					<input type="email" id="email" placeholder="Email" th:field="*{user.email}" required />
+				</div>
+
+				<hr />
+
+				<!-- Credenziali di accesso -->
+				<div class="input-container">
+					<label class="icon" for="username"><i class="fas fa-user"></i></label>
+					<input type="text" id="username" placeholder="Username" th:field="*{username}" required />
+				</div>
+
+				<div class="input-container">
+					<label class="icon" for="password"><i class="fas fa-unlock-alt"></i></label>
+					<input type="password" id="password" placeholder="Password" th:field="*{password}" required />
+				</div>
+
+				<hr />
+
+				<!-- Privacy -->
+				<div class="btn-block">
+					<p>
+						Creando un account accetti le Condizioni d' uso e vendita. Consulta la nostra Informativa sulla
+						privacy,
+						l'Informativa sui cookie e l'Informativa sulla pubblicit&aacute; definita in base agli interessi.
+						<a href="#">Privacy Policy</a>.
+					</p>
+					<button type="submit"><i class="fas fa-check"></i> Conferma</button>
+				</div>
+			</form>
+			
+			<div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #e2e8f0;">
+				<p style="color: #6b7280; margin-bottom: 0.5rem;">Hai già un account?</p>
+				<a href="/login" style="color: #6366f1; text-decoration: none; font-weight: 600;">
+					<i class="fas fa-sign-in-alt"></i> Accedi ora
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		function toggleMenu() {
+			var navbar = document.getElementById('navbar');
+			navbar.classList.toggle('responsive');
+		}
+	</script>
+
+	<!-- Footer -->
+	<footer class="footer">
+		<div class="footer-content">
+			<div class="footer-section">
+				<h3>SIWZone</h3>
+				<p>Crea il tuo account per accedere a tutte le funzionalità del sito.</p>
+			</div>
+			<div class="footer-section">
+				<h3>Link Utili</h3>
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="/login">Login</a></li>
+					<li><a href="/showAllProdotti">Prodotti</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<p>&copy; 2025 SIWZone. Tutti i diritti riservati.</p>
+		</div>
+	</footer>
+
+	<script src="https://use.fontawesome.com/releases/v5.4.1/js/all.js"
+		integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

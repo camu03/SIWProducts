@@ -1,0 +1,164 @@
+body {
+ 	font-family: 'Roboto', sans-serif;
+ 	background-color: #f4f4f4;
+ 	margin: 0;
+ 	padding: 0;
+ }
+
+ .container {
+ 	max-width: 600px;
+ 	margin: 50px auto;
+ 	padding: 20px;
+ 	background-color: #fff;
+ 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+ 	border-radius: 8px;
+ }
+
+ h1 {
+ 	text-align: center;
+ 	color: #333;
+ }
+
+ form {
+ 	display: flex;
+ 	flex-direction: column;
+ }
+
+ label {
+ 	margin-bottom: 5px;
+ 	color: #555;
+ 	text-align: center;
+ }
+
+ input,
+ select,
+ textarea,
+ button {
+ 	margin-bottom: 15px;
+ 	padding: 10px;
+ 	border: 1px solid #ddd;
+ 	border-radius: 4px;
+ 	font-size: 16px;
+ }
+
+ input[type="file"] {
+ 	padding: 3px;
+ }
+
+ textarea {
+ 	resize: vertical;
+ 	border: 1px solid #ddd;
+ 	border-radius: 4px;
+ 	padding: 10px;
+ 	font-size: 16px;
+ 	margin-bottom: 5px;
+ 	width: 95%;
+ }
+
+ .char-counter {
+ 	text-align: right;
+ 	font-size: 14px;
+ 	color: #555;
+ }
+
+ .image-preview {
+ 	display: none;
+ 	max-width: 100%;
+ 	margin-top: 15px;
+ 	border: 1px solid #ddd;
+ 	border-radius: 4px;
+ }
+
+ button {
+ 	background-color: #28a745;
+ 	color: #fff;
+ 	border: none;
+ 	cursor: pointer;
+ 	padding: 10px 15px;
+ 	font-size: 16px;
+ 	border-radius: 4px;
+ 	transition: background-color 0.3s ease;
+ }
+
+ button:hover {
+ 	background-color: #218838;
+ }
+
+/* Stili per pulsanti multipli */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.button-secondary {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.button-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Box informativo */
+.info-box {
+    background: #f0f8ff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid #007bff;
+}
+
+.info-box h3 {
+    margin: 0;
+    color: #333;
+}
+
+.info-box p {
+    margin: 5px 0 0 0;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Stili per errori di validazione */
+.error {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Gallery immagini */
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.image-gallery img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+ @media (max-width: 600px) {
+ 	.container {
+ 		padding: 10px;
+ 	}
+
+ 	input,
+ 	select,
+ 	textarea,
+ 	button {
+ 		font-size: 14px;
+ 	}
+ }

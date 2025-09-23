@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifica Commento - SIWZone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="/css/headerFooter.css" rel="stylesheet" type="text/css">
+    <link href="/css/stileIndex.css" rel="stylesheet" type="text/css">
+    <link href="/css/stileInserimento.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar" id="navbar">
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/showAllProdotti">Prodotti</a>
+            <div th:if="${userDetails != null and userDetails.authorities.?[authority == 'ADMIN'].size() > 0}">
+                <a href="/admin/success">Area Riservata</a>
+            </div>
+        </div>
+
+        <div class="search-bar">
+            <form th:action="@{/ricercaHome}" method="POST">
+                <input type="text" name="keyword" th:value="${keyword}" placeholder="Cerca...">
+                <button type="submit">Cerca</button>
+            </form>
+        </div>
+
+        <div th:if="${userDetails}" class="auth-links">
+            <span th:text="${userDetails.username}"></span>
+            <a href="/logout">Logout</a>
+        </div>
+        <div th:unless="${userDetails}" class="auth-links">
+            <a href="/login">Login</a>
+            <a href="/register">Registrazione</a>
+        </div>
+        <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
+    </div>
+
+    <!-- Contenuto principale -->
+    <div class="container">
+        <h1><i class="fas fa-edit"></i> Modifica Commento</h1>
+        
+        <!-- Informazioni prodotto -->
+        <div th:if="${prodotto != null}" style="background: #f0f8ff; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #007bff;">
+            <h3 style="margin: 0; color: #333;">Prodotto: <span th:text="${prodotto.nome}">Nome Prodotto</span></h3>
+            <p style="margin: 5px 0 0 0; color: #666; font-size: 14px;">Stai modificando il tuo commento per questo prodotto</p>
+        </div>
+
+        <!-- Form di modifica -->
+        <form th:action="@{/prodotto/{pid}/commento/{cid}/modifica(pid=${prodotto != null ? prodotto.id : 0}, cid=${commento != null ? commento.id : 0})}" 
+              method="post" th:object="${commentoDTO}">
+            
+            <div>
+                <label for="testo">Il tuo commento:</label>
+                <textarea id="testo" name="testo" th:field="*{testo}" rows="5" 
+                         placeholder="Scrivi il tuo commento..." maxlength="500" required
+                         oninput="updateCharCounter()"></textarea>
+                <div id="charCounter" class="char-counter">0 / 500 caratteri</div>
+                <div th:if="${#fields.hasErrors('testo')}" th:errors="*{testo}">Errore nel commento</div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; gap: 10px;">
+                <button type="button" th:onclick="'window.location.href=\'/prodotto/\' + ' + ${prodotto != null ? prodotto.id : 1}" 
+                        style="background-color: #6c757d;">
+                    <i class="fas fa-arrow-left"></i> Annulla
+                </button>
+                <button type="submit">
+                    <i class="fas fa-save"></i> Salva Modifiche
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            var navbar = document.getElementById('navbar');
+            navbar.classList.toggle('responsive');
+        }
+        
+        function updateCharCounter() {
+            const textarea = document.getElementById('testo');
+            const counter = document.getElementById('charCounter');
+            counter.textContent = `${textarea.value.length} / 500 caratteri`;
+        }
+        
+        // Inizializza il contatore al caricamento della pagina
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCharCounter();
+        });
+    </script>
+
+    <!-- Footer -->
+	<footer class="footer">
+		<div class="footer-content">
+			<div class="footer-section">
+				<h3>SIWZone</h3>
+				<p>Scopri i nostri prodotti esclusivi e trova quello che stai cercando.</p>
+			</div>
+			<div class="footer-section">
+				<h3>Link Utili</h3>
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="/showAllProdotti">Prodotti</a></li>
+					<li><a href="/login">Login</a></li>
+					<li><a href="/register">Registrazione</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<p>&copy; 2025 SIWZone. Tutti i diritti riservati.</p>
+		</div>
+	</footer>
+</body>
+</html>
