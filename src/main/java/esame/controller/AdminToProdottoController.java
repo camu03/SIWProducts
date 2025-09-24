@@ -63,14 +63,14 @@ public class AdminToProdottoController {
 	}
 
 	/**
-	 * metodo per visualizzare la lista dei prodotti inseriti
+	 * metodo per visualizzare la lista dei Prodotti inseriti
 	 * 
-	 * @param modello come dati da passare alla pagina per visualizzare i prodotti
+	 * @param modello come dati da passare alla pagina per visualizzare i Prodotti
 	 **/
-	@GetMapping("/admin/prodotti")
+	@GetMapping("/admin/Prodotti")
 	public String showListaProdotti(Model model) {
-		List<Prodotto> prodotti = prodottoRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
-		model.addAttribute("prodotti", prodotti);
+		List<Prodotto> Prodotti = prodottoRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+		model.addAttribute("Prodotti", Prodotti);
 		return "admin/showProdotto";
 	}
 
@@ -90,7 +90,7 @@ public class AdminToProdottoController {
 	 * meotodo per gestire l'inizializzazione del prodotto da parte dell'admin
 	 * 
 	 * @param ProdottoDTO
-	 * @return entità Prodotto salvata e ritorno alla visualizzazione di tutti i prodotti
+	 * @return entità Prodotto salvata e ritorno alla visualizzazione di tutti i Prodotti
 	 * @throws IOException
 	 **/
 	// 3) Salva Prodotto + immagini dal DTO
@@ -131,7 +131,7 @@ public class AdminToProdottoController {
 		prodottoService.save(prodotto);
 		redirectAttrs.addFlashAttribute("success", "Prodotto creato con successo");
 
-		return "redirect:/admin/prodotti";
+		return "redirect:/admin/Prodotti";
 	}
 
 	/**
@@ -170,7 +170,7 @@ public class AdminToProdottoController {
 	}
 
 	/**
-	 * metodo che permette di modificare le informazioni sui prodotti dato l'id
+	 * metodo che permette di modificare le informazioni sui Prodotti dato l'id
 	 * 
 	 * @param modello come dati da passare alla pagina di modifica del prodotto
 	 * @param id      del prodotto da modificare
@@ -199,7 +199,7 @@ public class AdminToProdottoController {
 
 		} catch (Exception ex) {
 			System.out.println("Exception: " + ex.getMessage());
-			return "redirect:/admin/prodotti";
+			return "redirect:/admin/Prodotti";
 		}
 
 		return "admin/editProdotto";
@@ -233,7 +233,7 @@ public class AdminToProdottoController {
 			Prodotto prodotto = prodottoRepository.findById(dto.getId()).orElse(null);
 			if (prodotto == null) {
 				System.out.println("Prodotto non trovato con ID: " + dto.getId());
-				return "redirect:/admin/prodotti";
+				return "redirect:/admin/Prodotti";
 			}
 			
 			System.out.println("Aggiornamento prodotto ID: " + prodotto.getId());
@@ -250,7 +250,7 @@ public class AdminToProdottoController {
 			e.printStackTrace();
 		}
 
-		return "redirect:/admin/prodotti";
+		return "redirect:/admin/Prodotti";
 	}
 
 	/*
@@ -279,7 +279,7 @@ public class AdminToProdottoController {
 	 * metodo per cancellare un  prodotto dato il suo id
 	 * 
 	 * @param id del  prodotto da cancellare
-	 * @return  prodotto cancellato e mostra la pagina con la tabella dei  prodotti
+	 * @return  prodotto cancellato e mostra la pagina con la tabella dei  Prodotti
 	 **/
 	@GetMapping("/admin/deleteProdotto")
 	public String deleteProdotto(@RequestParam Long id) {
@@ -295,19 +295,19 @@ public class AdminToProdottoController {
 		} catch (Exception ex) {
 			System.out.println("Exception : " + ex.getMessage());
 		}
-		return "redirect:/admin/prodotti";
+		return "redirect:/admin/Prodotti";
 	}
 
 	/**
-	 * Pagina per gestire i prodotti simili di un prodotto specifico
+	 * Pagina per gestire i Prodotti simili di un prodotto specifico
 	 */
-	@GetMapping("/admin/prodotto/{id}/prodottiSimili")
+	@GetMapping("/admin/prodotto/{id}/ProdottiSimili")
 	public String showProdottiSimili(@PathVariable Long id, Model model) {
 		try {
 			Prodotto prodotto = prodottoRepository.findByIdWithProdottiSimili(id)
 				.orElseThrow(() -> new EntityNotFoundException("Prodotto non trovato"));
 			
-			// Tutti i prodotti tranne quello corrente
+			// Tutti i Prodotti tranne quello corrente
 			List<Prodotto> tuttiProdotti = prodottoRepository.findAll()
 				.stream()
 				.filter(p -> !p.getId().equals(id))
@@ -316,11 +316,11 @@ public class AdminToProdottoController {
 			model.addAttribute("prodotto", prodotto);
 			model.addAttribute("tuttiProdotti", tuttiProdotti);
 			
-			return "admin/prodottiSimili";
+			return "admin/ProdottiSimili";
 			
 		} catch (Exception e) {
-			System.out.println("Errore nel caricamento prodotti simili: " + e.getMessage());
-			return "redirect:/admin/prodotti";
+			System.out.println("Errore nel caricamento Prodotti simili: " + e.getMessage());
+			return "redirect:/admin/Prodotti";
 		}
 	}
 	
@@ -347,7 +347,7 @@ public class AdminToProdottoController {
 			redirectAttrs.addFlashAttribute("error", "Errore nell'aggiunta del prodotto simile");
 		}
 		
-		return "redirect:/admin/prodotto/" + id + "/prodottiSimili";
+		return "redirect:/admin/prodotto/" + id + "/ProdottiSimili";
 	}
 	
 	/**
@@ -373,6 +373,6 @@ public class AdminToProdottoController {
 			redirectAttrs.addFlashAttribute("error", "Errore nella rimozione del prodotto simile");
 		}
 		
-		return "redirect:/admin/prodotto/" + id + "/prodottiSimili";
+		return "redirect:/admin/prodotto/" + id + "/ProdottiSimili";
 	}
 }

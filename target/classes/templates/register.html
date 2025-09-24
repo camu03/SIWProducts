@@ -8,7 +8,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
 		integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-		<link href="/css/headerFooter.css" rel="stylesheet" type="text/css">
+	<link href="/css/headerFooter.css" rel="stylesheet" type="text/css">
 	<link href="/css/authStyles.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -20,12 +20,16 @@
 			<a href="/showAllProdotti">Prodotti</a>
 		</div>
 
+		<!--barra di ricerca-->
+		<!--
 		<div class="search-bar">
 			<form th:action="@{/ricercaHome}" method="POST">
-				<input type="text" name="keyword" placeholder="Cerca...">
+				<input type="text" name="keyword" th:value="${keyword}" placeholder="Cerca...">
 				<button type="submit">Cerca</button>
 			</form>
 		</div>
+		-->
+		
 
 		<div class="auth-links">
 			<a href="/login">Login</a>
@@ -94,8 +98,8 @@
 			</form>
 			
 			<div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #e2e8f0;">
-				<p style="color: #6b7280; margin-bottom: 0.5rem;">Hai già un account?</p>
-				<a href="/login" style="color: #6366f1; text-decoration: none; font-weight: 600;">
+				<p style="color: #806b6b; margin-bottom: 0.5rem;">Hai gi&aacute; un account?</p>
+				<a href="/login" style="color: #f16363; text-decoration: none; font-weight: 600;">
 					<i class="fas fa-sign-in-alt"></i> Accedi ora
 				</a>
 			</div>
@@ -113,7 +117,7 @@
 	<footer class="footer">
 		<div class="footer-content">
 			<div class="footer-section">
-				<h3>SIWZone</h3>
+				<h3>SIWProducts</h3>
 				<p>Crea il tuo account per accedere a tutte le funzionalità del sito.</p>
 			</div>
 			<div class="footer-section">
@@ -126,7 +130,7 @@
 			</div>
 		</div>
 		<div class="footer-bottom">
-			<p>&copy; 2025 SIWZone. Tutti i diritti riservati.</p>
+			<p>&copy; 2025 SIWProducts. Tutti i diritti riservati.</p>
 		</div>
 	</footer>
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modifica Commento - SIWZone</title>
+    <title>Modifica Commento - SIWProducts</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="/css/headerFooter.css" rel="stylesheet" type="text/css">
     <link href="/css/stileIndex.css" rel="stylesheet" type="text/css">
@@ -43,7 +43,7 @@
         <h1><i class="fas fa-edit"></i> Modifica Commento</h1>
         
         <!-- Informazioni prodotto -->
-        <div th:if="${prodotto != null}" style="background: #f0f8ff; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #007bff;">
+        <div th:if="${prodotto != null}" style="background: #fff0f0; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #ff0000;">
             <h3 style="margin: 0; color: #333;">Prodotto: <span th:text="${prodotto.nome}">Nome Prodotto</span></h3>
             <p style="margin: 5px 0 0 0; color: #666; font-size: 14px;">Stai modificando il tuo commento per questo prodotto</p>
         </div>
@@ -95,8 +95,8 @@
 	<footer class="footer">
 		<div class="footer-content">
 			<div class="footer-section">
-				<h3>SIWZone</h3>
-				<p>Scopri i nostri prodotti esclusivi e trova quello che stai cercando.</p>
+				<h3>SIWProducts</h3>
+				<p>Scopri i nostri Prodotti esclusivi e trova quello che stai cercando.</p>
 			</div>
 			<div class="footer-section">
 				<h3>Link Utili</h3>
@@ -109,7 +109,7 @@
 			</div>
 		</div>
 		<div class="footer-bottom">
-			<p>&copy; 2025 SIWZone. Tutti i diritti riservati.</p>
+			<p>&copy; 2025 SIWProducts. Tutti i diritti riservati.</p>
 		</div>
 	</footer>
 </body>

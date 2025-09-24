@@ -25,8 +25,8 @@ public class Prodotto {
 
 	// Prodotti simili - relazione Many-to-Many
 	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-	@JoinTable(name = "prodotti_simili", joinColumns = @JoinColumn(name = "prodotto_id"), inverseJoinColumns = @JoinColumn(name = "prodotto_simile_id"))
-	private List<Prodotto> prodottiSimili = new ArrayList<>();
+	@JoinTable(name = "Prodotti_simili", joinColumns = @JoinColumn(name = "prodotto_id"), inverseJoinColumns = @JoinColumn(name = "prodotto_simile_id"))
+	private List<Prodotto> ProdottiSimili = new ArrayList<>();
 
 	// getter e setter
 	public List<Immagine> getImmagini() {
@@ -135,24 +135,24 @@ public class Prodotto {
 		this.descrizione = descrizione;
 	}
 
-	// Getter e Setter per prodotti simili
+	// Getter e Setter per Prodotti simili
 	public List<Prodotto> getProdottiSimili() {
-		return prodottiSimili;
+		return ProdottiSimili;
 	}
 
-	public void setProdottiSimili(List<Prodotto> prodottiSimili) {
-		this.prodottiSimili = prodottiSimili;
+	public void setProdottiSimili(List<Prodotto> ProdottiSimili) {
+		this.ProdottiSimili = ProdottiSimili;
 	}
 
-	// Metodi di utilità per gestire prodotti simili
+	// Metodi di utilità per gestire Prodotti simili
 	public void addProdottoSimile(Prodotto prodotto) {
-		if (!this.prodottiSimili.contains(prodotto)) {
-			this.prodottiSimili.add(prodotto);
+		if (!this.ProdottiSimili.contains(prodotto)) {
+			this.ProdottiSimili.add(prodotto);
 		}
 	}
 
 	public void removeProdottoSimile(Prodotto prodotto) {
-		this.prodottiSimili.remove(prodotto);
+		this.ProdottiSimili.remove(prodotto);
 	}
 
 	// metodi hash e equals

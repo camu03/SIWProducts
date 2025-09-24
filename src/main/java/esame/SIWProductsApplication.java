@@ -7,10 +7,10 @@ import org.thymeleaf.spring6.SpringTemplateEngine;
 import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 
 @SpringBootApplication
-public class SiwBooksApplication {
+public class SIWProductsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SiwBooksApplication.class, args);
+		SpringApplication.run(SIWProductsApplication.class, args);
 	}
 	
 	@Bean

@@ -93,7 +93,7 @@ body {
 }
 
 .button-secondary {
-    background-color: #6c757d;
+    background-color: #7d6c6c;
     color: white;
     border: none;
     cursor: pointer;
@@ -104,16 +104,16 @@ body {
 }
 
 .button-secondary:hover {
-    background-color: #5a6268;
+    background-color: #685a5a;
 }
 
 /* Box informativo */
 .info-box {
-    background: #f0f8ff;
+    background: #fff0f0;
     padding: 15px;
     border-radius: 8px;
     margin-bottom: 20px;
-    border-left: 4px solid #007bff;
+    border-left: 4px solid #ff0000;
 }
 
 .info-box h3 {

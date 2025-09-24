@@ -21,7 +21,7 @@ public interface ProdottoRepository extends JpaRepository<Prodotto, Long> {
 
 	public Optional<Prodotto> findById(Long id);
 	
-	@Query("SELECT p FROM Prodotto p LEFT JOIN FETCH p.prodottiSimili WHERE p.id = :id")
+	@Query("SELECT p FROM Prodotto p LEFT JOIN FETCH p.ProdottiSimili WHERE p.id = :id")
 	public Optional<Prodotto> findByIdWithProdottiSimili(@Param("id") Long id);
 
 	@Query("SELECT p FROM Prodotto p " + " LEFT JOIN FETCH p.commenti "

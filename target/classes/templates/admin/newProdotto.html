@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Aggiungi Prodotto - SIWZone</title>
+	<title>Aggiungi Prodotto - SIWProducts</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 	<link href="/css/headerFooter.css" rel="stylesheet" type="text/css">
 	<link href="/css/stileIndex.css" rel="stylesheet" type="text/css">
@@ -60,11 +60,11 @@
 				<label for="tipologia">Tipologia:</label>
 				<select id="tipologia" name="tipologia" th:field="*{tipologia}">
 					<option value="Top">Top</option>
-					<option value="Giardinaggio">Giardinaggio</option>
-					<option value="Prodotti">Prodotti</option>
-					<option value="Informatica">Informatica</option>
+					<option value="Casa">Casa</option>
+					<option value="Prodotti Culinari">Prodotti Culinari</option>
+					<option value="Vestiti">Vestiti</option>
 					<option value="Elettronica">Elettronica</option>
-					<option value="Auto e Moto">Auto e Moto</option>
+					<option value="Motori">Motori</option>
 					<option value="Articoli Sportivi">Articoli Sportivi</option>					
 				</select>
 			</div>
@@ -88,7 +88,7 @@
 				<img id="imagePreview" class="image-preview" alt="Anteprima Immagine">
 			</div>
 			<div style="display: flex; justify-content: space-between; gap: 10px;">
-				<button type="button" onclick="window.location.href='/admin/prodotti'" style="background-color: #6c757d;">
+				<button type="button" onclick="window.location.href='/admin/Prodotti'" style="background-color: #7d6c6c;">
 					<i class="fas fa-arrow-left"></i> Torna ai Prodotti
 				</button>
 				<button type="submit">
@@ -134,21 +134,21 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
-                <h3>SIWZone</h3>
-                <p>Aggiungi prodotti nel catalogo - Area Amministratori.</p>
+                <h3>SIWProducts</h3>
+                <p>Aggiungi Prodotti nel catalogo - Area Amministratori.</p>
             </div>
             <div class="footer-section">
                 <h3>Link Utili</h3>
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/admin/prodotti">Gestisci Prodotti</a></li>
+                    <li><a href="/admin/Prodotti">Gestisci Prodotti</a></li>
                     <li><a href="/admin/success">Area Riservata</a></li>
                     <li><a href="/logout">Logout</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 SIWZone. Tutti i diritti riservati.</p>
+            <p>&copy; 2025 SIWProducts. Tutti i diritti riservati.</p>
         </div>
     </footer>
 </body>

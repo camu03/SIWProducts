@@ -32,8 +32,8 @@ public class MainController {
 	 */
 	@GetMapping("/")
 	public String showHomePage(Model model) {
-		List<Prodotto> prodotti = prodottoRepository.findAll();
-		model.addAttribute("prodotti", prodotti);
+		List<Prodotto> Prodotti = prodottoRepository.findAll();
+		model.addAttribute("Prodotti", Prodotti);
 		return "index"; // Thymeleaf template: src/main/resources/templates/home.html
 	}
 
@@ -41,7 +41,7 @@ public class MainController {
 	public String ricercaHome(Model model,@RequestParam("keyword") String keyword) {
 
 		List<Prodotto> risultati = prodottoService.findByTitolo(keyword);
-		model.addAttribute("prodotti", risultati);
+		model.addAttribute("Prodotti", risultati);
 		model.addAttribute("keyword", keyword);
 		return "ricerca";
 	}

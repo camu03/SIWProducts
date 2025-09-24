@@ -1,115 +1,114 @@
-/* Modern Auth Pages Styles - Login and Registration */
+/* Stile generale */
+:root {
+    --primary-color: #ff0000;
+    --hover-color: #b30000;
+    --background-color: #f8f9fa;
+    --text-color: #333;
+    --border-color: #dee2e6;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --error-color: #dc3545;
+    --success-color: #28a745;
+}
+
 body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
     margin: 0;
-    padding: 0;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-/* Main content wrapper */
+/* Layout principale */
 .main-content {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem 1rem;
+    padding: 2rem;
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
 
-/* Main block container */
 .main-block {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
+    background: white;
     padding: 2.5rem;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 0 20px var(--shadow-color);
     width: 100%;
-    max-width: 450px;
+    max-width: 400px;
+}
+
+/* Intestazione */
+h1 {
+    color: var(--text-color);
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 2rem;
+    font-weight: 500;
+    font-size: 1.75rem;
 }
 
-.main-block h1 {
-    color: #2d3748;
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    text-align: center;
+h1 i {
+    color: var(--primary-color);
+    margin-right: 0.5rem;
 }
 
-/* Form styles */
-.main-block form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-/* Input container */
+/* Form e input */
 .input-container {
     position: relative;
-    display: flex;
-    align-items: center;
+    margin-bottom: 1.5rem;
 }
 
-.main-block label.icon {
+.input-container .icon {
     position: absolute;
     left: 1rem;
-    color: #6366f1;
-    font-size: 1.2rem;
-    z-index: 2;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
 }
 
-.main-block input[type="text"],
-.main-block input[type="email"],
-.main-block input[type="password"] {
+input[type="text"],
+input[type="password"],
+input[type="email"] {
     width: 100%;
-    padding: 1rem 1rem 1rem 3rem;
-    border: 2px solid #e2e8f0;
-    border-radius: 12px;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
     font-size: 1rem;
-    background: rgba(255, 255, 255, 0.9);
-    transition: all 0.3s ease;
+    transition: border-color 0.3s ease;
     box-sizing: border-box;
 }
 
-.main-block input[type="text"]:focus,
-.main-block input[type="email"]:focus,
-.main-block input[type="password"]:focus {
+input:focus {
     outline: none;
-    border-color: #6366f1;
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-    background: #ffffff;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.25);
 }
 
-/* Button styles */
-.main-block button[type="submit"] {
-    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+/* Bottoni */
+button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--primary-color);
     color: white;
-    padding: 1rem 2rem;
     border: none;
-    border-radius: 12px;
-    font-size: 1.1rem;
-    font-weight: 600;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 1rem;
+    transition: background-color 0.3s ease;
 }
 
-.main-block button[type="submit"]:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+button:hover {
+    background-color: var(--hover-color);
 }
 
-/* Account type selection (for registration) */
+/* Radio buttons per la registrazione */
 .account-type {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .account-type input[type="radio"] {
@@ -117,156 +116,69 @@ body {
 }
 
 .account-type .radio {
-    padding: 0.75rem 1.5rem;
-    border: 2px solid #e2e8f0;
-    border-radius: 25px;
+    position: relative;
+    padding-left: 1.8rem;
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-    background: white;
+    user-select: none;
+    color: var(--text-color);
+    font-size: 1rem;
 }
 
-.account-type input[type="radio"]:checked + .radio {
-    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-    color: white;
-    border-color: #6366f1;
+.account-type .radio::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    transition: all 0.2s ease;
 }
 
-/* Dividers */
-hr {
-    border: none;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
-    margin: 1.5rem 0;
+.account-type input[type="radio"]:checked + .radio::before {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
-/* Privacy section */
-.btn-block {
+/* Link aggiuntivi */
+.form-links {
     text-align: center;
+    margin-top: 1.5rem;
 }
 
-.btn-block p {
-    font-size: 0.875rem;
-    color: #6b7280;
-    line-height: 1.5;
-    margin-bottom: 1.5rem;
-}
-
-.btn-block a {
-    color: #6366f1;
+.form-links a {
+    color: var(--primary-color);
     text-decoration: none;
-    font-weight: 500;
+    font-size: 0.9rem;
 }
 
-.btn-block a:hover {
+.form-links a:hover {
     text-decoration: underline;
 }
 
-/* Success message styles */
-.container h1 {
-    color: #059669;
-    font-size: 2.5rem;
-    font-weight: 700;
+/* Messaggi di errore */
+.error-message {
+    color: var(--error-color);
+    text-align: center;
     margin-bottom: 1rem;
+    font-size: 0.9rem;
 }
 
-.container p {
-    font-size: 1.125rem;
-    color: #6b7280;
-    margin-bottom: 2rem;
-    line-height: 1.6;
-}
-
-.container .button {
-    display: inline-block;
-    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
-    color: white;
-    padding: 1rem 2rem;
-    text-decoration: none;
-    border-radius: 12px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.container .button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(5, 150, 105, 0.3);
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
+/* Responsive */
+@media (max-width: 480px) {
     .main-block {
-        padding: 2rem;
-        margin: 1rem;
-        max-width: 100%;
+        padding: 1.5rem;
     }
-    
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
     .account-type {
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 1rem;
+        align-items: center;
     }
-    
-    .account-type .radio {
-        text-align: center;
-    }
-    
-    .main-block h1 {
-        font-size: 1.75rem;
-    }
-}
-
-/* Animation for form elements */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.main-block {
-    animation: fadeInUp 0.6s ease-out;
-}
-
-/* Loading state for buttons */
-.main-block button[type="submit"]:active {
-    transform: translateY(0);
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
-}
-
-/* Focus states for accessibility */
-.main-block input:focus,
-.main-block button:focus {
-    outline: 2px solid #6366f1;
-    outline-offset: 2px;
-}
-
-/* Error states */
-.error {
-    color: #ef4444;
-    font-size: 0.875rem;
-    margin-top: 0.5rem;
-    text-align: left;
-}
-
-/* Additional visual enhancements */
-.main-block::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, #6366f1, #8b5cf6, #6366f1);
-    border-radius: 22px;
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.main-block:hover::before {
-    opacity: 0.3;
 }

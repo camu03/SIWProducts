@@ -1,5 +1,5 @@
 /*───────────────────────────────────────────────────────────────────────────  
-   Dettaglio Prodotto - SIWZone
+   Dettaglio Prodotto - SIWProducts
 ───────────────────────────────────────────────────────────────────────────*/
 
 .product-detail {
@@ -50,7 +50,7 @@
 }
 
 .product-category {
-    background: #3498db;
+    background: #db3434;
     color: white;
     padding: 8px 15px;
     border-radius: 20px;
@@ -97,7 +97,7 @@
 }
 
 .back-button:hover {
-    background: #7f8c8d;
+    background: #8d7f7f;
 }
 
 /*───────────────────────────────────────────────────────────────────────────  
@@ -128,7 +128,7 @@
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 15px;
-    border-left: 4px solid #3498db;
+    border-left: 4px solid #db3434;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
@@ -140,7 +140,7 @@
 }
 
 .comment-header strong {
-    color: #2c3e50;
+    color: #502c2c;
 }
 
 .comment-text {
@@ -151,7 +151,7 @@
 .no-comments {
     text-align: center;
     padding: 40px;
-    color: #7f8c8d;
+    color: #8d7f7f;
 }
 
 /*───────────────────────────────────────────────────────────────────────────  
@@ -161,7 +161,7 @@
 .additional-info {
     margin-top: 30px;
     padding: 20px;
-    background: #f8f9fa;
+    background: #faf8f8;
     border-radius: 5px;
 }
 

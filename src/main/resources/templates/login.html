@@ -3,11 +3,11 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Login - SIWZone</title>
+	<title>Login - SIWProducts</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
 		integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-		<link href="/css/headerFooter.css" rel="stylesheet" type="text/css">
+	<link href="/css/headerFooter.css" rel="stylesheet" type="text/css">
 	<link href="/css/authStyles.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -19,12 +19,14 @@
 			<a href="/showAllProdotti">Prodotti</a>
 		</div>
 
+		<!--
 		<div class="search-bar">
 			<form th:action="@{/ricercaHome}" method="POST">
 				<input type="text" name="keyword" placeholder="Cerca...">
 				<button type="submit">Cerca</button>
 			</form>
 		</div>
+		-->
 
 		<div class="auth-links">
 			<a href="/register">Registrazione</a>
@@ -35,7 +37,7 @@
 	<!--blocco principale-->
 	<div class="main-content">
 		<div class="main-block">
-			<h1><i class="fas fa-sign-in-alt"></i> Accedi a SIWZone</h1>
+			<h1><i class="fas fa-sign-in-alt"></i> Accedi a SIWProducts</h1>
 
 			<!--form per effettuare il login con i suoi campi-->
 			<form th:action="@{/login}" method="POST">
@@ -57,9 +59,9 @@
 				<button type="submit"><i class="fas fa-sign-in-alt"></i> Accedi</button>
 			</form>
 			
-			<div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #e2e8f0;">
-				<p style="color: #6b7280; margin-bottom: 0.5rem;">Non hai un account?</p>
-				<a href="/register" style="color: #6366f1; text-decoration: none; font-weight: 600;">
+			<div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f0e2e2;">
+				<p style="color: #806b6b; margin-bottom: 0.5rem;">Non hai un account?</p>
+				<a href="/register" style="color: #f16363; text-decoration: none; font-weight: 600;">
 					<i class="fas fa-user-plus"></i> Registrati ora
 				</a>
 			</div>
@@ -77,7 +79,7 @@
 	<footer class="footer">
 		<div class="footer-content">
 			<div class="footer-section">
-				<h3>SIWZone</h3>
+				<h3>SIWProducts</h3>
 				<p>Accedi al tuo account per gestire i tuoi ordini e preferenze.</p>
 			</div>
 			<div class="footer-section">
@@ -90,7 +92,7 @@
 			</div>
 		</div>
 		<div class="footer-bottom">
-			<p>&copy; 2025 SIWZone. Tutti i diritti riservati.</p>
+			<p>&copy; 2025 SIWProducts. Tutti i diritti riservati.</p>
 		</div>
 	</footer>
 </body>

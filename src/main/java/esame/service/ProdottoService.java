@@ -43,9 +43,9 @@ public class ProdottoService {
 	}
 
 	/**
-	 * metodo per vedere tutti gli prodotti
+	 * metodo per vedere tutti gli Prodotti
 	 * 
-	 * @param id degli prodotti
+	 * @param id degli Prodotti
 	 * @throws Exception
 	 **/
 	public Prodotto get(Long id) throws Exception {

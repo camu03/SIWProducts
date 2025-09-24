@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Benvenuti da SIWZone</title>
+	<title>SIWProducts</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 	<link href="/css/headerFooter.css" rel="stylesheet" type="text/css">
 	<link href="/css/stileIndex.css" rel="stylesheet" type="text/css">
@@ -46,7 +46,7 @@
 
 	<!--div principale, rappresenta la prima cosa che vede l'utente quando entra-->
 	<div class="hero">
-		<h1>Benvenuti su SIWZone</h1>
+		<h1>SIWProducts</h1>
 		<p>Scopri i nostri Prodotti esclusivi.</p>
 		<a href="/showAllProdotti" class="cta-button">Scopri di pi&uacute;</a>
 	</div>
@@ -54,15 +54,15 @@
 
 
 	<div class="products">
-		<h2>I nostri prodotti</h2><br>
+		<h2>I nostri Prodotti</h2><br>
 		<hr>
 		<br><br><br>
 
 		<ul class="product-list">
 
-			<!-- Se la lista è non vuota, itera sui prodotti -->
-			<th:block th:if="${prodotti}">
-				<li th:each="prodotto : ${prodotti}" class="prodotto-item">
+			<!-- Se la lista è non vuota, itera sui Prodotti -->
+			<th:block th:if="${Prodotti}">
+				<li th:each="prodotto : ${Prodotti}" class="prodotto-item">
 					<div class="product-item">
 						<!-- Link al dettaglio prodotto -->
 						<a th:href="@{/prodotto/{id}(id=${prodotto.id})}">
@@ -92,7 +92,7 @@
 			</th:block>
 
 			<!-- Se la lista è vuota, mostra un messaggio -->
-			<th:block th:if="${#lists.isEmpty(prodotti)}">
+			<th:block th:if="${#lists.isEmpty(Prodotti)}">
 				<li>
 					<p>Nessun prodotto disponibile.</p>
 				</li>
@@ -117,11 +117,11 @@
 			<h2>Le Nostre Categorie</h2>
 			<hr>
 			<ul class="no-bullets" style="margin-top:20px;">
-				<li><a href="#">Giardinaggio</a></li>
-				<li><a href="#">Prodotti</a></li>
-				<li><a href="#">Informatica</a></li>
+				<li><a href="#">Casa</a></li>
+				<li><a href="#">Prodotti Culinari</a></li>
+				<li><a href="#">Vestiti</a></li>
 				<li><a href="#">Elettronica</a></li>
-				<li><a href="#">Auto e Moto</a></li>
+				<li><a href="#">Motori</a></li>
 				<li><a href="#">Articoli Sportivi</a></li>
 			</ul>
 		</div>
@@ -131,9 +131,9 @@
 			<h2>Contattaci</h2>
 			<hr>
 			<div class="contact-info" style="margin-top:20px; line-height:1.6; text-align:left;">
-				<p><strong>Email:</strong> info@SIWZone.it</p>
+				<p><strong>Email:</strong> info@SIWProducts.it</p>
 				<p><strong>Telefono:</strong> +39 06 1234 5678</p>
-				<p><strong>Indirizzo:</strong> Via Roma 100, Nettuno (RM)</p>
+				<p><strong>Indirizzo:</strong> Via Carmelo Maestrini, Roma (RM)</p>
 			</div>
 			<div class="social-icons">
 				<a href="https://facebook.com" aria-label="Facebook" target="_blank">
@@ -154,8 +154,8 @@
 	<footer class="footer">
 		<div class="footer-content">
 			<div class="footer-section">
-				<h3>SIWZone</h3>
-				<p>Risultati di ricerca - Trova i prodotti che stai cercando.</p>
+				<h3>SIWProducts</h3>
+				<p>Risultati di ricerca - Trova i Prodotti che stai cercando.</p>
 			</div>
 			<div class="footer-section">
 				<h3>Link Utili</h3>
@@ -168,7 +168,7 @@
 			</div>
 		</div>
 		<div class="footer-bottom">
-			<p>&copy; 2025 SIWZone. Tutti i diritti riservati.</p>
+			<p>&copy; 2025 SIWProducts. Tutti i diritti riservati.</p>
 		</div>
 	</footer>
 

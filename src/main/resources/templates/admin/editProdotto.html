@@ -74,11 +74,11 @@
                                     <select class="form-select" th:field="*{tipologia}" id="tipologia" required>
                                         <option value="">Seleziona tipologia</option>
                                         <option value="Top">Top</option>
-                                        <option value="Giardinaggio">Giardinaggio</option>
-                                        <option value="Prodotti">Prodotti</option>
-                                        <option value="Informatica">Informatica</option>
+                                        <option value="Casa">Casa</option>
+                                        <option value="Prodotti Culinari">Prodotti Culinari</option>
+                                        <option value="Vestiti">Vestiti</option>
                                         <option value="Elettronica">Elettronica</option>
-                                        <option value="Auto e Moto">Auto e Moto</option>
+                                        <option value="Motori">Motori</option>
                                         <option value="Articoli Sportivi">Articoli Sportivi</option>
                                     </select>
                                     <div th:if="${#fields.hasErrors('tipologia')}" th:errors="*{tipologia}" class="text-danger small"></div>
@@ -108,7 +108,7 @@
                             </div>
                             
                             <div class="d-flex justify-content-between">
-                                <a href="/admin/prodotti" class="btn btn-secondary">
+                                <a href="/admin/Prodotti" class="btn btn-secondary">
                                     <i class="fas fa-arrow-left"></i> Annulla
                                 </a>
                                 <button type="submit" class="btn btn-success">
@@ -145,21 +145,21 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
-                <h3>SIWZone</h3>
-                <p>Modifica prodotti del catalogo - Area Amministratori.</p>
+                <h3>SIWProducts</h3>
+                <p>Modifica Prodotti del catalogo - Area Amministratori.</p>
             </div>
             <div class="footer-section">
                 <h3>Link Utili</h3>
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/admin/prodotti">Gestisci Prodotti</a></li>
+                    <li><a href="/admin/Prodotti">Gestisci Prodotti</a></li>
                     <li><a href="/admin/success">Area Riservata</a></li>
                     <li><a href="/logout">Logout</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 SIWZone. Tutti i diritti riservati.</p>
+            <p>&copy; 2025 SIWProducts. Tutti i diritti riservati.</p>
         </div>
     </footer>
 </body>

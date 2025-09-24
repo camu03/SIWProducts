@@ -113,22 +113,22 @@ public class ProdottoController {
 		response.setHeader("Pragma", "no-cache");
 		response.setHeader("Expires", "0");
 		
-		System.out.println("=== MOSTRA TUTTI I PRODOTTI ===");
-		List<Prodotto> prodotti = prodottoRepository.findAll();
-		System.out.println("Totale prodotti: " + prodotti.size());
+		System.out.println("=== MOSTRA TUTTI I Prodotti ===");
+		List<Prodotto> Prodotti = prodottoRepository.findAll();
+		System.out.println("Totale Prodotti: " + Prodotti.size());
 		
-		model.addAttribute("prodotti", prodotti);
+		model.addAttribute("Prodotti", Prodotti);
 		model.addAttribute("categoriaSelezionata", (String) null); // Reset categoria
 		return "tuttiProdotti";
 	}
 	
 	/**
-	 * metodo per filtrare prodotti per categoria
+	 * metodo per filtrare Prodotti per categoria
 	 * @param categoria categoria da filtrare
 	 * @param model per passare dati al template
-	 * @return pagina con prodotti filtrati
+	 * @return pagina con Prodotti filtrati
 	 */
-	@GetMapping("/prodotti/categoria/{categoria}")
+	@GetMapping("/Prodotti/categoria/{categoria}")
 	public String showProdottiPerCategoria(@PathVariable String categoria, 
 	                                      Model model, 
 	                                      HttpServletResponse response) {
@@ -141,8 +141,8 @@ public class ProdottoController {
 		System.out.println("=== FILTRO CATEGORIA ===");
 		System.out.println("Categoria richiesta: '" + categoria + "'");
 		
-		List<Prodotto> prodotti = prodottoRepository.findByTipologiaIgnoreCase(categoria);
-		System.out.println("Prodotti trovati per '" + categoria + "': " + prodotti.size());
+		List<Prodotto> Prodotti = prodottoRepository.findByTipologiaIgnoreCase(categoria);
+		System.out.println("Prodotti trovati per '" + categoria + "': " + Prodotti.size());
 		
 		// Debug: mostra prime 3 tipologie nel database
 		List<Prodotto> tuttiProdotti = prodottoRepository.findAll();
@@ -151,9 +151,9 @@ public class ProdottoController {
 			System.out.println("  - Prodotto: '" + p.getNome() + "' - Tipologia: '" + p.getTipologia() + "'")
 		);
 		
-		model.addAttribute("prodotti", prodotti);
+		model.addAttribute("Prodotti", Prodotti);
 		model.addAttribute("categoriaSelezionata", categoria);
-		model.addAttribute("totaleProdotti", prodotti.size());
+		model.addAttribute("totaleProdotti", Prodotti.size());
 		
 		return "tuttiProdotti";
 	}
@@ -166,13 +166,13 @@ public class ProdottoController {
 	 */
 	@PostMapping("/ricercaProdotti")
 	public String ricercaProdotti(@RequestParam("keyword") String keyword, Model model) {
-		List<Prodotto> prodotti;
+		List<Prodotto> Prodotti;
 		if (keyword == null || keyword.trim().isEmpty()) {
-			prodotti = prodottoRepository.findAll();
+			Prodotti = prodottoRepository.findAll();
 		} else {
-			prodotti = prodottoRepository.findByNomeContainingIgnoreCase(keyword.trim());
+			Prodotti = prodottoRepository.findByNomeContainingIgnoreCase(keyword.trim());
 		}
-		model.addAttribute("prodotti", prodotti);
+		model.addAttribute("Prodotti", Prodotti);
 		model.addAttribute("keyword", keyword);
 		return "tuttiProdotti";
 	}
@@ -349,7 +349,7 @@ public class ProdottoController {
 	}
 	
 	/**
-	 * Endpoint per mostrare i prodotti simili nella vista pubblica
+	 * Endpoint per mostrare i Prodotti simili nella vista pubblica
 	 */
 	@GetMapping("/prodotto/{id}/simili")
 	public String showProdottiSimiliPubblici(@PathVariable Long id, Model model) {
@@ -358,12 +358,12 @@ public class ProdottoController {
 				.orElseThrow(() -> new RuntimeException("Prodotto non trovato"));
 			
 			model.addAttribute("prodotto", prodotto);
-			model.addAttribute("prodottiSimili", prodotto.getProdottiSimili());
+			model.addAttribute("ProdottiSimili", prodotto.getProdottiSimili());
 			
-			return "prodottiSimili";
+			return "ProdottiSimili";
 			
 		} catch (Exception e) {
-			System.out.println("Errore nel caricamento prodotti simili: " + e.getMessage());
+			System.out.println("Errore nel caricamento Prodotti simili: " + e.getMessage());
 			return "redirect:/showAllProdotti";
 		}
 	}

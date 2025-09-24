@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Benvenuti da SIWZone</title>
+	<title>SIWProducts</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 	<link href="/css/headerFooter.css" rel="stylesheet" type="text/css">
 	<link href="/css/stileIndex.css" rel="stylesheet" type="text/css">
@@ -44,7 +44,8 @@
 
 	<!--div principale, rappresenta la prima cosa che vede l'utente quando entra-->
 	<div class="hero">
-		<h1>Benvenuti da SIWZone</h1>
+		<h1>SIWProducts</h1>
+		<p style="font-size: 0.8rem; margin-top: -15px; margin-bottom: 20px; opacity: 0.8;">by Pips</p>
 		<p>Scopri i nostri Prodotti esclusivi.</p>
 		<br>
 		
@@ -67,7 +68,7 @@
 		<br><br><br>
 		
 		<div style="text-align: center; padding: 40px;">
-			<p style="font-size: 1.2rem; color: #666;">Scopri la nostra vasta gamma di prodotti</p>
+			<p style="font-size: 1.2rem; color: #666;">Scopri la nostra vasta gamma di Prodotti</p>
 			<a href="/showAllProdotti" class="cta-button" style="margin-top: 20px; display: inline-block;">
 				Vai ai Prodotti
 			</a>
@@ -82,32 +83,39 @@
 		}
 	</script>
 
-	<!-- CONTENITORE SEZIONI IN LINEA -->
+	<!-- CONTENITORE SEZIONI -->
 	<div class="info-sections"
-		style="display:flex; flex-wrap:wrap; justify-content:center; gap:40px; padding:50px 20px; background:#fff;">
+		style="display:flex; flex-direction:column; align-items:center; gap:40px; padding:50px 20px; background:#fff;">
 
 		<!-- SEZIONE CATEGORIE -->
-		<div class="categories" style="flex:1 1 300px; max-width:400px;">
+		<div class="categories" style="width:100%; max-width:1200px;">
 			<h2>Le Nostre Categorie</h2>
 			<hr>
-			<ul class="no-bullets" style="margin-top:20px;">
-				<li><a th:href="@{/prodotti/categoria/Giardinaggio}">Giardinaggio</a></li>
-				<li><a th:href="@{/prodotti/categoria/Prodotti}">Prodotti</a></li>
-				<li><a th:href="@{/prodotti/categoria/Informatica}">Informatica</a></li>
-				<li><a th:href="@{/prodotti/categoria/Elettronica}">Elettronica</a></li>
-				<li><a th:href="@{/prodotti/categoria/Auto}">Auto e Moto</a></li>
-				<li><a th:href="@{/prodotti/categoria/Sport}">Articoli Sportivi</a></li>
+			<ul class="no-bullets" style="margin-top:20px; display:flex; flex-wrap:wrap; gap:20px; justify-content:center;">
+				<li style="flex:0 1 auto;"><a th:href="@{/Prodotti/categoria/Casa}" style="display: inline-block; padding: 1rem 2rem; background: #ffffff; border-radius: 0.75rem; text-align: center; font-size: 1.125rem; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 2px 10px rgba(0,0,0,0.05); color: #333; text-decoration: none;">Casa</a></li>
+				<li style="flex:0 1 auto;"><a th:href="@{/Prodotti/categoria/Prodotti Culinari}" style="display: inline-block; padding: 1rem 2rem; background: #ffffff; border-radius: 0.75rem; text-align: center; font-size: 1.125rem; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 2px 10px rgba(0,0,0,0.05); color: #333; text-decoration: none;">Prodotti Culinari</a></li>
+				<li style="flex:0 1 auto;"><a th:href="@{/Prodotti/categoria/Vestiti}" style="display: inline-block; padding: 1rem 2rem; background: #ffffff; border-radius: 0.75rem; text-align: center; font-size: 1.125rem; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 2px 10px rgba(0,0,0,0.05); color: #333; text-decoration: none;">Vestiti</a></li>
+				<li style="flex:0 1 auto;"><a th:href="@{/Prodotti/categoria/Elettronica}" style="display: inline-block; padding: 1rem 2rem; background: #ffffff; border-radius: 0.75rem; text-align: center; font-size: 1.125rem; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 2px 10px rgba(0,0,0,0.05); color: #333; text-decoration: none;">Elettronica</a></li>
+				<li style="flex:0 1 auto;"><a th:href="@{/Prodotti/categoria/Motori}" style="display: inline-block; padding: 1rem 2rem; background: #ffffff; border-radius: 0.75rem; text-align: center; font-size: 1.125rem; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 2px 10px rgba(0,0,0,0.05); color: #333; text-decoration: none;">Motori</a></li>
+				<li style="flex:0 1 auto;"><a th:href="@{/Prodotti/categoria/Sport}" style="display: inline-block; padding: 1rem 2rem; background: #ffffff; border-radius: 0.75rem; text-align: center; font-size: 1.125rem; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 2px 10px rgba(0,0,0,0.05); color: #333; text-decoration: none;">Articoli Sportivi</a></li>
 			</ul>
+			<style>
+				.no-bullets a:hover {
+					background-color: #f6f3f3 !important;
+					color: #ff0000 !important;
+					transform: none !important;
+				}
+			</style>
 		</div>
 
 		<!-- SEZIONE CONTATTI -->
-		<div class="contact" style="flex:1 1 300px; max-width:400px;">
+		<div class="contact" style="width:100%; max-width:1200px;">
 			<h2>Contattaci</h2>
 			<hr>
 			<div class="contact-info" style="margin-top:20px; line-height:1.6; text-align:left;">
-				<p><strong>Email:</strong> info@SIWZone.it</p>
+				<p><strong>Email:</strong> info@SIWProducts.it</p>
 				<p><strong>Telefono:</strong> +39 06 1234 5678</p>
-				<p><strong>Indirizzo:</strong> Via Roma 100, Nettuno (RM)</p>
+				<p><strong>Indirizzo:</strong> Via Carmelo Maestrini, Roma (RM)</p>
 			</div>
 			<div class="social-icons">
 				<a href="https://facebook.com" aria-label="Facebook" target="_blank">
@@ -128,8 +136,8 @@
 	<footer class="footer">
 		<div class="footer-content">
 			<div class="footer-section">
-				<h3>SIWZone</h3>
-				<p>Scopri i nostri prodotti esclusivi e trova quello che stai cercando.</p>
+				<h3>SIWProducts</h3>
+				<p>Scopri i nostri Prodotti esclusivi e trova quello che stai cercando.</p>
 			</div>
 			<div class="footer-section">
 				<h3>Link Utili</h3>
@@ -142,7 +150,7 @@
 			</div>
 		</div>
 		<div class="footer-bottom">
-			<p>&copy; 2025 SIWZone. Tutti i diritti riservati.</p>
+			<p>&copy; 2025 SIWProducts. Tutti i diritti riservati.</p>
 		</div>
 	</footer>
 

@@ -4,9 +4,10 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Area Privata SIWZone</title>
+	<title>Area Privata SIWProducts</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 	<link href="/css/headerFooter.css" rel="stylesheet" type="text/css">
-	<link href="/css/StileIndex.css" rel="stylesheet" type="text/css">
+	<link href="/css/stileIndex.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -39,40 +40,40 @@
 
 	<!--div principale, rappresenta la prima cosa che vede l'utente quando entra-->
 	<div class="hero">
-		<h1>Benvenuti nella tua Area Riservata</h1>
+		<h1>Benvenuto nella tua Area Riservata</h1>
 		<br><br><br>
 		<a href="/" class="cta-button">Torna alla Home</a>
 		<br>
 		<a href="/admin/newProdotto" class="cta-button">Aggiungi Prodotti</a>
 		<br>
-		<a href="/admin/prodotti" class="cta-button">Visualizza Prodotti</a>
+		<a href="/admin/Prodotti" class="cta-button">Visualizza Prodotti</a>
 	</div>
 
-	<!-- CONTENITORE SEZIONI IN LINEA -->
+	<!-- CONTENITORE SEZIONI -->
 	<div class="info-sections"
-		style="display:flex; flex-wrap:wrap; justify-content:center; gap:40px; padding:50px 20px; background:#fff;">
+		style="display:flex; flex-direction:column; align-items:center; gap:40px; padding:50px 20px; background:#fff;">
 
 		<!-- SEZIONE ADMIN TOOLS -->
-		<div class="categories" style="flex:1 1 300px; max-width:400px;">
+		<div class="categories" style="width:100%; max-width:1200px;">
 			<h2>Strumenti Admin</h2>
 			<hr>
-			<ul class="no-bullets" style="margin-top:20px;">
-				<li><a href="/admin/prodotti">Gestisci Prodotti</a></li>
-				<li><a href="/admin/newProdotto">Aggiungi Prodotto</a></li>
-				<li><a href="/admin/utenti">Gestisci Utenti</a></li>
-				<li><a href="/admin/ordini">Visualizza Ordini</a></li>
-				<li><a href="/admin/statistiche">Statistiche</a></li>
+			<ul class="no-bullets" style="margin-top:20px; display:flex; flex-wrap:wrap; gap:20px; justify-content:center;">
+				<li style="flex:0 1 auto;"><a href="/admin/Prodotti" style="display: inline-block; padding: 1rem 2rem; background: #ffffff; border-radius: 0.75rem; text-align: center; font-size: 1.125rem; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 2px 10px rgba(0,0,0,0.05); color: #333; text-decoration: none;">Gestisci Prodotti</a></li>
+				<li style="flex:0 1 auto;"><a href="/admin/newProdotto" style="display: inline-block; padding: 1rem 2rem; background: #ffffff; border-radius: 0.75rem; text-align: center; font-size: 1.125rem; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 2px 10px rgba(0,0,0,0.05); color: #333; text-decoration: none;">Aggiungi Prodotto</a></li>
+				<li style="flex:0 1 auto;"><a href="/admin/utenti" style="display: inline-block; padding: 1rem 2rem; background: #ffffff; border-radius: 0.75rem; text-align: center; font-size: 1.125rem; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 2px 10px rgba(0,0,0,0.05); color: #333; text-decoration: none;">Gestisci Utenti</a></li>
+				<li style="flex:0 1 auto;"><a href="/admin/ordini" style="display: inline-block; padding: 1rem 2rem; background: #ffffff; border-radius: 0.75rem; text-align: center; font-size: 1.125rem; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 2px 10px rgba(0,0,0,0.05); color: #333; text-decoration: none;">Visualizza Ordini</a></li>
+				<li style="flex:0 1 auto;"><a href="/admin/statistiche" style="display: inline-block; padding: 1rem 2rem; background: #ffffff; border-radius: 0.75rem; text-align: center; font-size: 1.125rem; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 2px 10px rgba(0,0,0,0.05); color: #333; text-decoration: none;">Statistiche</a></li>
 			</ul>
 		</div>
 
 		<!-- SEZIONE CONTATTI -->
-		<div class="contact" style="flex:1 1 300px; max-width:400px;">
+		<div class="contact" style="width:100%; max-width:1200px;">
 			<h2>Contattaci</h2>
 			<hr>
 			<div class="contact-info" style="margin-top:20px; line-height:1.6; text-align:left;">
-				<p><strong>Email:</strong> info@siwzone.it</p>
+				<p><strong>Email:</strong> info@SIWProducts.it</p>
 				<p><strong>Telefono:</strong> +39 06 1234 5678</p>
-				<p><strong>Indirizzo:</strong> Via Roma 100, Nettuno (RM)</p>
+				<p><strong>Indirizzo:</strong> Via Carmelo Maestrini, Roma (RM)</p>
 			</div>
 			<div class="social-icons">
 				<a href="https://facebook.com" aria-label="Facebook" target="_blank">
@@ -92,21 +93,21 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
-                <h3>SIWZone</h3>
+                <h3>SIWProducts</h3>
                 <p>Area Amministratori.</p>
             </div>
             <div class="footer-section">
                 <h3>Link Utili</h3>
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/admin/prodotti">Gestisci Prodotti</a></li>
+                    <li><a href="/admin/Prodotti">Gestisci Prodotti</a></li>
                     <li><a href="/admin/success">Area Riservata</a></li>
                     <li><a href="/logout">Logout</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 SIWZone. Tutti i diritti riservati.</p>
+            <p>&copy; 2025 SIWProducts. Tutti i diritti riservati.</p>
         </div>
     </footer>
 

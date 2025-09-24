@@ -50,10 +50,10 @@ public class AuthConfiguration {
 								// 1) risorse pubbliche (home, login, register, static)
 				.requestMatchers(HttpMethod.GET, "/", "/index", "/login", "/register", "/css/**", "/images/**",
 						"/favicon.ico","/ricercaHome","/showAllProdotti",
-						"/prodotti/categoria/**")
+						"/Prodotti/categoria/**")
 				.permitAll()
 
-				// 2) GET consultazione prodotti e immagini (pubblico)
+				// 2) GET consultazione Prodotti e immagini (pubblico)
 				.requestMatchers(HttpMethod.GET, "/prodotto/**", "/prodotto/immagine/**", "/prodotto/*/simili").permitAll()
 				.requestMatchers(HttpMethod.POST, "/ricercaHome","/register","/ricercaProdotti").permitAll()
 
