@@ -107,7 +107,8 @@ public class ProdottoController {
 	 * @return index.html (homepage del sito)
 	 */
 	@GetMapping("/showAllProdotti")
-	public String showAllProdotti(Model model, HttpServletResponse response) {
+	public String showAllProdotti(Model model, HttpServletResponse response, @RequestParam(value="topPrezzo", required=false) String topPrezzo, @RequestParam(value="topCommenti", required=false) String topCommenti) {
+
 		// Previeni caching
 		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 		response.setHeader("Pragma", "no-cache");
@@ -116,6 +117,36 @@ public class ProdottoController {
 		System.out.println("=== MOSTRA TUTTI I Prodotti ===");
 		List<Prodotto> Prodotti = prodottoRepository.findAll();
 		System.out.println("Totale Prodotti: " + Prodotti.size());
+		
+		/* 
+		if ("true".equals(topPrezzo)) {
+			System.out.println("Ordinamento per prezzo decrescente richiesto");
+			Prodotti = prodottoRepository.findAllOrderByPrezzoDesc();
+			if(Prodotti.size()>3) {
+				Prodotti = Prodotti.subList(0, 3); // Limita a top 3
+			}
+			model.addAttribute("topPrezzo", true);
+
+		}
+		else{
+			Prodotti = prodottoRepository.findAll();
+			model.addAttribute("topPrezzo", false);
+		}
+		*/
+
+		if("true".equals(topCommenti)) {
+			System.out.println("Ordinamento per numero di commenti decrescente richiesto");
+			Prodotti = prodottoRepository.findAllOrderByCommentiDesc();
+			if(Prodotti.size()>3) {
+				Prodotti = Prodotti.subList(0, 3); // Limita a top 3
+			}
+			model.addAttribute("topCommenti", true);
+		}
+		else {
+			Prodotti = prodottoRepository.findAll();
+			model.addAttribute("topCommenti", false);
+		}
+		
 		
 		model.addAttribute("Prodotti", Prodotti);
 		model.addAttribute("categoriaSelezionata", (String) null); // Reset categoria

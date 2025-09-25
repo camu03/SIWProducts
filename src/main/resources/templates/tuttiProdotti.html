@@ -36,8 +36,6 @@
 		<div class="nav-links">
 			<a href="/">Home</a>
 			<a th:if="${userDetails != null and userDetails.authorities.?[authority == 'ADMIN'].size() > 0}" href="/admin/success">Area Riservata</a>
-
-		
 		</div>
 
 		<!--barra di ricerca-->
@@ -67,6 +65,32 @@
 
 	<div class="products">
 		<h2>I nostri Prodotti</h2>
+
+		<!-- Pulsante per ordinare per prezzo decrescente -->
+		<!--
+		<div class="action-buttons mb-3"
+			style="display: flex; gap: 10px; align-items: center; margin-right: 20px;">
+			
+			<a th:href="@{/showAllProdotti(topPrezzo='true')}" 
+			   style="background-color: #ff0000; color: white; padding: 8px 12px; text-decoration: none; border-radius: 4px; font-size: 14px;">
+				<i class="fas fa-sort-amount-down-alt"></i> Prezzo Decrescente
+			</a>
+		-->
+			
+			<!-- Pulsante per rimuovere il filtro -->
+			<a th:href="@{/showAllProdotti}" 
+			   style="background-color: #6c757d; color: white; padding: 8px 12px; text-decoration: none; border-radius: 4px; font-size: 14px;">
+				<i class="fas fa-times"></i> Rimuovi Filtro
+			</a>
+
+			<div class="action-buttons mb-3"
+				style="display: flex; gap: 10px; align-items: center; margin-right: 20px;">
+
+				<!-- Pulsante per ordinare per popolarità -->
+				<a th:href="@{/showAllProdotti(topPopolarita='true')}" 
+				   style="background-color: #ff0000; color: white; padding: 8px 12px; text-decoration: none; border-radius: 4px; font-size: 14px;">
+					<i class="fas fa-fire"></i> Pi&uacute; Popolari
+				</a>
 		
 		<!-- Mostra informazioni filtro -->
 		<div th:if="${categoriaSelezionata != null}" style="background: #ffe7e7; padding: 10px; border-radius: 5px; margin: 10px 0;">

@@ -164,4 +164,12 @@ public class ProdottoService {
 	public List<Prodotto> findAll(){
 		return prodottoRepository.findAll();
 	}
+
+	public List<Prodotto> findAllOrderByPrezzoDesc(){
+		return prodottoRepository.findAllOrderByPrezzoDesc();
+	}
+
+	public List<Prodotto> findAllOrderByCommentiDesc(){
+		return prodottoRepository.findAllOrderByCommentiDesc();
+	}
 }
