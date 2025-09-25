@@ -165,11 +165,12 @@ public class ProdottoService {
 		return prodottoRepository.findAll();
 	}
 
-	public List<Prodotto> findAllOrderByPrezzoDesc(){
+	/*public List<Prodotto> findAllOrderByPrezzoDesc(){
 		return prodottoRepository.findAllOrderByPrezzoDesc();
 	}
 
 	public List<Prodotto> findAllOrderByCommentiDesc(){
 		return prodottoRepository.findAllOrderByCommentiDesc();
 	}
+		*/
 }

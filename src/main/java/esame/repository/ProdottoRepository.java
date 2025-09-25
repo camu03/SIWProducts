@@ -44,10 +44,10 @@ public interface ProdottoRepository extends JpaRepository<Prodotto, Long> {
 	@Query("SELECT p FROM Prodotto p WHERE p.id = :id")
 	Optional<Prodotto> findByIdOptimized(@Param("id") Long id);
 
-	@Query("SELECT p FROM Prodotto p ORDER BY p.prezzo DESC")
+	/*@Query("SELECT p FROM Prodotto p ORDER BY p.prezzo DESC")
 	List<Prodotto> findAllOrderByPrezzoDesc();
 
 	@Query("SELECT p FROM Prodotto p ORDER BY p.commenti.size() DESC")
 	List<Prodotto> findAllOrderByCommentiDesc();
-
+	*/
 }

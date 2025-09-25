@@ -134,7 +134,7 @@ public class ProdottoController {
 		}
 		*/
 
-		if("true".equals(topCommenti)) {
+		/*if("true".equals(topCommenti)) {
 			System.out.println("Ordinamento per numero di commenti decrescente richiesto");
 			Prodotti = prodottoRepository.findAllOrderByCommentiDesc();
 			if(Prodotti.size()>3) {
@@ -145,7 +145,7 @@ public class ProdottoController {
 		else {
 			Prodotti = prodottoRepository.findAll();
 			model.addAttribute("topCommenti", false);
-		}
+		}*/
 		
 		
 		model.addAttribute("Prodotti", Prodotti);
