@@ -107,7 +107,7 @@ public class ProdottoController {
 	 * @return index.html (homepage del sito)
 	 */
 	@GetMapping("/showAllProdotti")
-	public String showAllProdotti(Model model, HttpServletResponse response, @RequestParam(value="topPrezzo", required=false) String topPrezzo, @RequestParam(value="topCommenti", required=false) String topCommenti) {
+	public String showAllProdotti(Model model, HttpServletResponse response, @RequestParam(value="topPrezzo", required=false) String topPrezzo, @RequestParam(value="topCommenti", required=false) String topCommenti, @RequestParam(value="topNome", required=false) String topNome) {
 
 		// Previeni caching
 		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
@@ -117,6 +117,23 @@ public class ProdottoController {
 		System.out.println("=== MOSTRA TUTTI I Prodotti ===");
 		List<Prodotto> Prodotti = prodottoRepository.findAll();
 		System.out.println("Totale Prodotti: " + Prodotti.size());
+
+		
+		
+		
+		
+		
+		/*
+		if("true".equals(topNome)) {
+			System.out.println("Ordinamento per nome crescente richiesto");
+			Prodotti = prodottoRepository.findAllOrderByNomeAsc();
+			model.addAttribute("topNome", true);
+		}
+		else {
+			Prodotti = prodottoRepository.findAll();
+			model.addAttribute("topNome", false);
+		}
+		*/
 		
 		/* 
 		if ("true".equals(topPrezzo)) {
